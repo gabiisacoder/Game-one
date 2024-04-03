@@ -1,24 +1,18 @@
-import random
+from flask import Flask
 
-def guess_the_number():
-    # Generate a random number between 1 and 100
-    secret_number = random.randint(1, 100)
-    attempts = 0
-    
-    print("Welcome to Guess the Number game!")
-    print("I've chosen a number between 1 and 100. Can you guess it?")
-    
-    while True:
-        guess = int(input("Enter your guess: "))
-        attempts += 1
-        
-        if guess < secret_number:
-            print("Too low! Try again.")
-        elif guess > secret_number:
-            print("Too high! Try again.")
-        else:
-            print(f"Congratulations! You've guessed the number {secret_number} in {attempts} attempts!")
-            break
+app = Flask(__name__)
 
-if __name__ == "__main__":
-    guess_the_number()
+@app.route('/')
+def home():
+    return 'Welcome to the Flask project!'
+
+@app.route('/about')
+def about():
+    return 'This is a simple Flask project.'
+
+@app.route('/contact')
+def contact():
+    return 'You can contact us at example@example.com.'
+
+if __name__ == '__main__':
+    app.run(debug=True)
